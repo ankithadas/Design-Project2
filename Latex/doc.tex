@@ -85,23 +85,23 @@
     \maketitle
 
     \section{Introduction}{
-        Inverted pendulum control is one of the fundamental but interesting problems in the field of control theory. This system consists of a rotary arm controlled by an input torque, \(\tau\) , and an unactuated pendulum connected to the arm at a pivot joint [1]. Different control algorithms are applied for solving swing-up control and stabilization problems. The equations of motion are non-linear. Therefore, they can be linearized at an operating point to carry out proper solutions[6]. 
+        Inverted pendulum control is one of the fundamental but interesting problems in the field of control theory. This system consists of a rotary arm controlled by an input torque, \(\tau\) , and an unactuated pendulum connected to the arm at a pivot joint . Different control algorithms are applied for solving swing-up control and stabilization problems. The equations of motion are non-linear. Therefore, they can be linearized at an operating point to carry out proper solutions[6]. 
 
-        This model has been significantly used in applications such as position control, aerospace vehicle controls and robotics [2]. These applications can be found in transport machines that need to balance objects, in systems that support walking for patients, in robots that are used in domestic and industrial use and in object transport using drones [7]. This paper uses stabilization controllers to design a closed-loop pole placement. 
+        This model has been significantly used in applications such as position control, aerospace vehicle controls and robotics \cite{wolenski_controller_2011}. These applications can be found in transport machines that need to balance objects, in systems that support walking for patients, in robots that are used in domestic and industrial use and in object transport using drones \cite{kafetzis_inverted_2017}. This paper uses stabilization controllers to design a closed-loop pole placement. 
 
-        This paper proposes design of controller for inverted pendulum system. Stabilization controllers were designed based on pole placement technique. Pole placement technique is used to get desired characteristics for the closed loop system. Pole placement is a well-known design technique that provides practical feedback gain to enable the closed-loop stable and high performance design of systems[4]. This technique also produces robustness property even in the face of certain gain[5].
+        This paper proposes design of controller for inverted pendulum system. Stabilization controllers were designed based on pole placement technique. Pole placement technique is used to get desired characteristics for the closed loop system. Pole placement is a well-known design technique that provides practical feedback gain to enable the closed-loop stable and high performance design of systems \cite{noauthor_lqr_nodate}. This technique also produces robustness property even in the face of certain gain.
 
         The first step was to determine the equations of motion for the inverted pendulum, using the Euler-Lagrange equations. It was then continued with finding a linearized model that approximated the original nonlinear system’s behavior around the equilibrium located on the upright vertical position. Using the linearized model, we designed a state feedback controller and observer by desired pole placement. Then we proceeded to make a swing up controller to bring the pendulum to a vertically upright position. Finally, we looked at a way to design a non-linear observer which can observe the system at all state values. 
     }
     \section{System Description}{
-        The Quanser SRV02 is a rotary servo plant attached to a pendulum arm, a physical model of such a system is presented in Fig. \ref{fig:rotarySystem}. The system introduced in this report consists of two components, a servo module and a rotary module.  The servo module consists of a DC servomotor mated with a gearbox of ratio 70:1 and has an input voltage of \(\pm 6\) V and is bolted directly to an aluminium frame for support. The independent output shaft driven by the motor rotates inside of a high-precision ball bearing block to minimize frictional losses. The output position and angle are measured through built in sensors on the output shaft. The second component of the system, the rotary module consists of two links, the first of which is a horizontal link called the rotating arm, and the second being a vertical link called the pendulum. The arm is rotated in the horizontal plane while the pendulum is allowed to move along the radial direction of the motor. This system was chosen as it had a detailed description of parameter values, making the modelling and simulation process more streamlined. Detailed description of the plant can be found at .... The system parameters are shown in Table. \ref{tab:systemData}.
+        The Quanser SRV02 is a rotary servo plant attached to a pendulum arm, a physical model of such a system is presented in Fig. \ref{fig:rotarySystem}. The system introduced in this report consists of two components, a servo module and a rotary module.  The servo module consists of a DC servomotor mated with a gearbox of ratio 70:1 and has an input voltage of \(\pm 6\) V and is bolted directly to an aluminium frame for support. The independent output shaft driven by the motor rotates inside of a high-precision ball bearing block to minimize frictional losses. The output position and angle are measured through built in sensors on the output shaft. The second component of the system, the rotary module consists of two links, the first of which is a horizontal link called the rotating arm, and the second being a vertical link called the pendulum. The arm is rotated in the horizontal plane while the pendulum is allowed to move along the radial direction of the motor. This system was chosen as it had a detailed description of parameter values, making the modelling and simulation process more streamlined. Detailed description of the plant can be found at \cite{apkarian_user_2011}. The system parameters are shown in Table. \ref{tab:systemData}.
         \begin{figure}[h!]
             \includegraphics[width = 0.5\linewidth]{systemPic.png}
             \caption{Quanser SRV02 rotary servo plant attached with a pendulum arm}
             \label{fig:rotarySystem}
         \end{figure}
         \begin{table}[h!]
-            \caption{Parameters of Rotary Pendulum \textbf{(cite this)} }
+            \caption{Parameters of Rotary Pendulum \cite{apkarian_user_2011} }
             \begin{tabular}{cccc}
                 \hline Parameter & Description & Value & Unit \\
                 \hline
@@ -179,7 +179,7 @@
         \begin{equation}
             Q_2 = -B_p \dot \alpha
         \end{equation}
-        where \(\tau\) is the torque acting on the rotary arm, and \(B_r,B_p\) are viscous damping force. The control variable is the input servo motor voltage \(V_m\) \((u(t))\) , and the torque generated by the servo motor is described by the equation 
+        where \(\tau\) is the torque acting on the rotary arm, and \(B_r,B_p\) are viscous damping force. The control variable is the input servo motor voltage \(V_m\) \((u(t))\) , and the torque generated by the servo motor is described by the equation \cite{gurocak_rotary_2017}
         \begin{equation}
             \tau = \frac{\eta K_g k_t(V_m - K_g k_m \dot \theta)}{R_m}
         \end{equation}
@@ -380,7 +380,7 @@
         \begin{equation}
             p_{1,2} = -2 \pm 2.04 j
         \end{equation}
-        The non dominant poles of this system are set far from the desired poles so that they have no significant impact on the system response. The non-dominant poles were set to \(p_{3,4}=-30,-40\). The controller gains can be easily calculated using MATLAB `place' functions which will calculate the required gains so \(A-BK\) have the desired eigenvalues. These poles are placed by optimizing the choice of eigenvectors for a robust solution(cite this). The controller gains are 
+        The non dominant poles of this system are set far from the desired poles so that they have no significant impact on the system response. The non-dominant poles were set to \(p_{3,4}=-30,-40\). The controller gains can be easily calculated using MATLAB `place' functions which will calculate the required gains so \(A-BK\) have the desired eigenvalues. These poles are placed by optimizing the choice of eigenvectors for a robust solution \cite{kautsky_robust_1985}. The controller gains are 
         \begin{equation}
             K = \begin{bmatrix}
                 -13.97 & 293.83 &  -8.32 &  31.38
@@ -447,7 +447,7 @@
         \subsection{Swing up control}{
             The objective of this controller is to bring the pendulum from downward position to vertically upright position, then the full state feedback controller can stabilize the pendulum at this state. A switching logic is used to switch over from swing up control to stabilization control. 
 
-            The swing up action is attained using an energy controller. Here the total energy of the system is used as a feedback quantity. It is driven such a way that the system achieves the energy equal to the upright position. By neglecting frictional losses, we can write refine the dynamics of the pendulum in terms of pivot acceleration as 
+            The swing up action is attained using an energy controller. Here the total energy of the system is used as a feedback quantity \cite{astrom_swinging_1996} \cite{akhtaruzzaman_modeling_2010}. It is driven such a way that the system achieves the energy equal to the upright position. By neglecting frictional losses, we can write refine the dynamics of the pendulum in terms of pivot acceleration as 
             \begin{equation}
                 J_{p} \ddot{\alpha} = \frac{1}{2} m_{p} L_{p} u \cos \alpha + \frac{1}{2} m_{p}  L_{p} g\sin \alpha
             \end{equation}
@@ -534,7 +534,7 @@
             where \(\hat \bx^*, u^*\) is the current estimated state and \(\hat \bx,u\) is the next estimated state. By using \(A :=\nabla_{\mathbf{x}} \mathbf{f}\) and \(B :=\nabla_{\mathbf{u}} \mathbf{f}\), the observer gain are calculated such that the eigenvalues of \(A - LC\) have negative real parts. This allows the observer converge to the true state of the system. 
 
             The analytical expression for \(A\) and \(B\) were calculated in \textit{Mathematica} and then imported as a matrix expression to Matlab. These expressions are too long to be expressed in this report. Using these matrices, the observer gains are calculated by using a modified `place' function. Some modifications were needed to the original `place' function to make it compatible for code generation. The same observer poles were that was used for linear observer was used to calculate \(L(\hat \bx)\). The schematic of the full-state observer is shown in Fig.\ref{fig:NonLinearObserver}
-            
+
             \begin{figure}
                 \includegraphics[width = 0.8\linewidth]{NonLinearObserver.pdf}
                 \caption{Schematic representation of Non-Linear Observer.}
@@ -553,17 +553,17 @@
                 \label{fig:NonLinearObVel}
             \end{figure}
 
+            \begin{figure*}
+                \includegraphics[width = \linewidth]{SwingUpSystemNonLin.pdf}
+                \caption{Swing up system with non-linear observer}
+                \label{fig:SwingUpSystemNonLin}
+            \end{figure*}
+
             To test this observer, open loop response of the system and the observer were compared when the vertical pendulum was disturbed with a small impulse voltage. The observer was initialed at \(\bx = [0.5,0.5,0.5,0.5]^T\) to see the convergence of the estimated state and actual state. Fig.\ref{fig:NonLinearOb}, \ref{fig:NonLinearObVel} shows how the estimator converges to the true state. 
 
             Unfortunately, adding the non-linear observer to the swing up system causes convergence error which crashes the simulation. The automatically selected solver, ode15s crashes when the swing up controller outputs a large voltage. Using a different solver like ode45 did provides an output, but the swing up action was lost. This could be because of the non-linear nature of the swing up controller. The schematic represented of this system is shown in Fig.\ref{fig:SwingUpSystemNonLin}.
 
             Even though the swing up action failed when ode45 was used, the estimated state and actual state were compared to see the performance of the observer. The observer was initialized at \(\bx = [0.5,0.5,0.5,0.5]^T\) and the pendulum system at \(\bx = [0,\pi + 0.5,0,0]^T\) and the result is shown in Fig.\ref{fig:SwingupfailVel}, \ref{fig:swingFailPos}
-
-            \begin{figure*}[t!]
-                \includegraphics[width = \linewidth]{SwingUpSystemNonLin.pdf}
-                \caption{Swing up system with non-linear observer}
-                \label{fig:SwingUpSystemNonLin}
-            \end{figure*}
 
             \begin{figure}
                 \includegraphics[width = \linewidth]{SwingupfailVel.eps}
@@ -580,8 +580,13 @@
     }
     \section{Conclusion}
     {
-        In the report, we went through the steps of necessary to design controllers for inverted rotary pendulum. We began by modelling our system using lagrangian formulation of mechanics. After we developed our non-linear model, we linearized the model at an equilibrium point to get state space matrices. Using these matrices, we designed a state feedback controller and observer by desired pole placement. Then we proceeded to make a swing up controller to bring the pendulum to a vertically upright position. Finally, we looked at a way to design a non-linear observer which can observe the system at all state values. We also tested the performance of this observer in the full system. Although the swing up controller was able to bring the pendulum to vertical position, it caused some unexpected behavior which could not be explained. Adding the non-linear observer to the swing up system causes the simulation to fail due to convergence error. Using other solves like ode45 did produce a plot, but the swing up action was lost. This could be due to non-linear nature of the controller. Further investigation is needed to identify this issue. 
+        This report has focused on five sections. Section 1 introduces the chosen topic. Section 2 then explains about the system. Continuing on, section 3 discusses the details of system modelling and moves into section 4 where system linearization was constructed. Finally, in section 5 controller design and simulations were simulated using Matlab Simulink and was explained better using graphs. The report is then summarized into a conclusion which is as explained.
 
-        
+        In conclusion, this report presents an in-depth analysis on a designed process of controllers for an inverted rotary pendulum. The system was modelled using the lagrangian formulation of mechanics to develop a non linear model. It was then linearized at an equilibrium point to achieve space state matrices. This process was followed by designing a swing up controller. To evaluate the performance of the controller, the closed-looped system was tested.  However it did not produce the expected results. Even though it was able to bring the pendulum to a vertical position, an unexpected behaviour was achieved. With an addition of the non-linear observer, the swing up system had caused a failure in simulation. This was due to the convergence error. To eliminate this issue, other solvers such as ODE45 were used. Although it did produce a plot, an absence in the swing up action was observed. This might have occurred as a result of the non-linear nature of the swing up controller. Therefore, a further investigation is needed, to identify in order to solve this issue. This proposed method could be a promising approach used for non-linear control systems in general. 
+
+
+        All files used for this project can be found at \url{https://github.com/ankithadas/Design-Project2.git}.
     }
+    \bibliography{MyRefs}
+    \bibliographystyle{IEEEtran}
 \end{document}
