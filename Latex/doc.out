@@ -1,0 +1,11 @@
+\BOOKMARK [0][-]{section*.1}{Control methods for Inverted Rotary Pendulum}{}% 1
+\BOOKMARK [1][-]{section.1}{Introduction}{section*.1}% 2
+\BOOKMARK [1][-]{section.2}{System Description}{section*.1}% 3
+\BOOKMARK [1][-]{section.3}{System Modelling}{section*.1}% 4
+\BOOKMARK [1][-]{section.4}{System Linearization}{section*.1}% 5
+\BOOKMARK [1][-]{section.5}{Controller Design and Simulations}{section*.1}% 6
+\BOOKMARK [2][-]{subsection.5.1}{Full state feedback controller}{section.5}% 7
+\BOOKMARK [2][-]{subsection.5.2}{Designing a Linear state estimator}{section.5}% 8
+\BOOKMARK [2][-]{subsection.5.3}{Swing up control}{section.5}% 9
+\BOOKMARK [2][-]{subsection.5.4}{Designing a Non-Linear Observer}{section.5}% 10
+\BOOKMARK [1][-]{section.6}{Conclusion}{section*.1}% 11
