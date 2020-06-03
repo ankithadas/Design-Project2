@@ -1,5 +1,6 @@
 function dx = nonLinear(x,u)
 
+    % Constants 
     mr = 0.257;
     mp = 0.127;
     Lr = 0.085;
@@ -25,26 +26,32 @@ function dx = nonLinear(x,u)
     dtheta = x(3);
     dalpha = x(4);
 
+    % Constants for H matrix 
     A1 = Jr+Lr^2*mp+1/4*Lp^2*mp*sin(alpha)^2;
     A2 = -(1/2)*Lp*Lr*mp*cos(alpha);
     B1 = A2;
     B2 = Jp + (Lp^2*mp)/4;
 
+    % Constants fot C matrix
     A3 = 1/4*Lp^2*mp*sin(2*alpha) *dalpha;
     A4 = 1/2*Lp*Lr*mp*sin(alpha);
     B3 = -(1/8)*Lp^2*mp*sin(2*alpha) *dtheta;
     
+    % Constants for G matrix
     B4 = -(1/2)*g*Lp*mp*sin(alpha);
 
     H = [A1, A2; B1,B2];
     C = [A3, A4;B3,0];
     G = [0;B4];
 
+    % Motor dynamics 
     tau = ng*Kg*nm*Kt*(u - Kg*km*dtheta)/Rm;
 
+    % B matrix 
     B = [(tau-Dr*dtheta); -Dp*dalpha];
 
     dx(1:2) = x(3:4);
+    % Solve for \ddot q
     dx(3:4) = H \ (-C * x(3:4) - G + B);
     
 end

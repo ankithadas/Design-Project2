@@ -54,24 +54,24 @@ legend('Linear','Non-Linear');
 ylabel('\alpha [rad]');
 xlabel('Time [s]');
 
-%%
-noLi = out.noLi.signals.values(:,1:2);
-t = out.noLi.time;
-rsig = out.ref.signals.values(:,1);
-figure(1)
-plot(t,rsig*180/pi,'k--');
-hold on
-plot(t,noLi(:,1),'Linewidth',1.5);
-
-plot(t,noLi(:,2),'Linewidth',1.5);
-legend('Reference','\theta','\alpha','Location','southeast');
-grid on 
-ylabel('Angle [deg]');
-xlabel('Time [s]');
-
-figure(2)
-cont = out.cont.signals.values;
-plot(t,cont,'Linewidth',1.5);
-grid on
-ylabel('Voltage [V]');
+%% Printing and making figures 
+% noLi = out.noLi.signals.values(:,1:2);
+% t = out.noLi.time;
+% rsig = out.ref.signals.values(:,1);
+% figure(1)
+% plot(t,rsig*180/pi,'k--');
+% hold on
+% plot(t,noLi(:,1),'Linewidth',1.5);
+% 
+% plot(t,noLi(:,2),'Linewidth',1.5);
+% legend('Reference','\theta','\alpha','Location','southeast');
+% grid on 
+% ylabel('Angle [deg]');
+% xlabel('Time [s]');
+% 
+% figure(2)
+% cont = out.cont.signals.values;
+% plot(t,cont,'Linewidth',1.5);
+% grid on
+% ylabel('Voltage [V]');
 xlabel('Time [s]');
