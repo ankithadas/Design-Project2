@@ -1,7 +1,9 @@
 This repository contains all files used for Design Project 2
 
 nonLinear.m : The full non-linear inverted pendulum function
+
 jacobA.m: Computes the jacobian matrices at a given state
+
 placeA.m : modified place function compatible for C++ code generation 
 
 Main simulink models are found at DP2Model. Please run dp2script.m before running the simulink files.
